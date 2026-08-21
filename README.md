@@ -13,13 +13,13 @@ Core, not a clone of Orca: resolve the branch PR with `gh`, roll up check/review
 ## Install
 
 ```sh
-herdr plugin link /home/woshahua/Projects/github.com/herdr-github-pr
+herdr plugin install woshahua/herdr-github-pr
 ```
 
-Or after this repo is on GitHub:
+Local checkout:
 
 ```sh
-herdr plugin install woshahua/herdr-github-pr
+herdr plugin link /path/to/herdr-github-pr
 ```
 
 ## Sidebar
