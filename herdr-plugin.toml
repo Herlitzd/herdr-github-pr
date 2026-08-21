@@ -1,0 +1,51 @@
+id = "github-pr"
+name = "GitHub PR Sync"
+version = "0.1.0"
+min_herdr_version = "0.7.4"
+description = "Sync the current branch GitHub PR status, checks, reviews, and comments into Herdr."
+platforms = ["linux", "macos"]
+
+[[startup]]
+command = ["node", "bin/sync.js"]
+
+[[events]]
+on = "pane.focused"
+command = ["node", "bin/sync.js"]
+
+[[events]]
+on = "worktree.opened"
+command = ["node", "bin/sync.js"]
+
+[[events]]
+on = "worktree.created"
+command = ["node", "bin/sync.js"]
+
+[[actions]]
+id = "refresh"
+title = "Refresh GitHub PR"
+contexts = ["workspace", "pane"]
+command = ["node", "bin/sync.js"]
+
+[[actions]]
+id = "show"
+title = "Show GitHub PR"
+contexts = ["workspace", "pane"]
+command = ["node", "bin/open-pane.js"]
+
+[[actions]]
+id = "open-web"
+title = "Open GitHub PR in browser"
+contexts = ["workspace", "pane"]
+command = ["node", "bin/open-web.js"]
+
+[[panes]]
+id = "pr"
+title = "GitHub PR"
+placement = "split"
+command = ["node", "bin/show.js"]
+
+[[link_handlers]]
+id = "github-pr"
+title = "Open GitHub PR in Herdr"
+pattern = "^https://github\\.com/[^/]+/[^/]+/pull/[0-9]+/?$"
+action = "show"

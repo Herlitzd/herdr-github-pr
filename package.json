@@ -1,0 +1,10 @@
+{
+  "name": "herdr-github-pr",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Herdr plugin that syncs GitHub PR status and comments",
+  "scripts": {
+    "test": "node --test test/plugin.test.js"
+  }
+}
