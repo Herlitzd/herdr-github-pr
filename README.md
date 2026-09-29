@@ -76,6 +76,20 @@ description = "refresh GitHub PR"
 Ctrl-click a `https://github.com/owner/repo/pull/N` URL to open the same pane.
 
 
+## Pane position
+
+Where the PR pane opens: `left`, `right` (default), `top`, `bottom`, or `tab`. Set it in `$(herdr plugin config-dir github-pr)/config.json`:
+
+```json
+{ "pane_position": "bottom" }
+```
+
+or override per launch with `HERDR_PR_PANE_POSITION`. Herdr can only split right/down, so `left`/`top` split then swap the new pane into place.
+
+The PR number in the pane header is an OSC 8 hyperlink (ctrl/cmd-click in supporting terminals). Sidebar tokens strip escape sequences, so `$pr` there can't be a link; use the `open-web` action or ctrl-click a PR URL.
+
+Automatic syncs never open the pane; only the `show` action or a PR link click does.
+
 ## What syncs
 
 - PR number, title, draft/open/merged/closed

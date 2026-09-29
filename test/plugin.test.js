@@ -288,3 +288,22 @@ test("contextTarget does not fall back to workspace_cwd", () => {
   }
 });
 
+
+test("pane position config", async () => {
+  const { panePosition, positionPlan } = await import("../lib/config.js");
+  delete process.env.HERDR_PR_PANE_POSITION;
+  assert.equal(panePosition({}), "right");
+  assert.equal(panePosition({ pane_position: "Left" }), "left");
+  assert.equal(panePosition({ pane_position: "nonsense" }), "right");
+  process.env.HERDR_PR_PANE_POSITION = "tab";
+  assert.equal(panePosition({ pane_position: "left" }), "tab");
+  delete process.env.HERDR_PR_PANE_POSITION;
+  assert.deepEqual(positionPlan("top"), { placement: "split", direction: "down", swap: true });
+  assert.deepEqual(positionPlan("tab"), { placement: "tab", direction: null, swap: false });
+});
+
+test("PR number renders as an OSC 8 hyperlink", async () => {
+  const { hyperlink } = await import("../lib/format.js");
+  assert.equal(hyperlink("https://x/y", "#1"), "\x1b]8;;https://x/y\x1b\\#1\x1b]8;;\x1b\\");
+  assert.equal(hyperlink("", "#1"), "#1");
+});
