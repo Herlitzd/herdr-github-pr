@@ -6,7 +6,7 @@ import { buildTimeline, eventTargetUrl, formatSnapshot } from "../lib/format.js"
 import { runCmd } from "../lib/github.js";
 
 const clicked = process.env.HERDR_PLUGIN_CLICKED_URL || "";
-const refreshMs = Number(process.env.HERDR_PR_PANE_REFRESH_MS || 30000);
+const refreshMs = Number(process.env.HERDR_PR_PANE_REFRESH_MS || 60000);
 const tabs = ["timeline", "comments", "reviews", "threads"];
 let tab = "timeline";
 let snapshot = null;
@@ -177,4 +177,4 @@ setInterval(() => {
   } catch {
     // keep the last frame
   }
-}, Number.isFinite(refreshMs) && refreshMs > 0 ? refreshMs : 30000);
+}, Number.isFinite(refreshMs) && refreshMs > 0 ? refreshMs : 60000);

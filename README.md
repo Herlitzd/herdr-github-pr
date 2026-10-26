@@ -98,7 +98,7 @@ Automatic syncs never open the pane; only the `show` action or a PR link click d
 - review decision
 - conversation comments, review submissions, inline review threads (resolved/outdated)
 
-Automatic refresh runs on `pane.focused`, `worktree.opened`, `worktree.created`, and once at server startup. Automatic `gh` calls are throttled to once per pane/cwd every 30 seconds. Manual refresh always runs.
+Automatic refresh runs on `pane.focused`, `worktree.opened`, `worktree.created`, and once at server startup. Automatic `gh` calls are throttled to once per pane/cwd every 60 seconds (including the startup refresh). Manual refresh always runs.
 
 New comments, unresolved threads, check flips, or review-decision changes raise a Herdr notification.
 

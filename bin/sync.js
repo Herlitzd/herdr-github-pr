@@ -31,8 +31,8 @@ function restoreThenRefresh() {
     const cwd = pane.foreground_cwd || pane.cwd;
     if (!cwd || seen.has(`${pane.workspace_id}:${cwd}`)) continue;
     seen.add(`${pane.workspace_id}:${cwd}`);
-    syncTarget({ paneId: pane.pane_id, workspaceId: pane.workspace_id, cwd }, { force: true, notifyOnChange: false });
+    syncTarget({ paneId: pane.pane_id, workspaceId: pane.workspace_id, cwd }, { force: false, notifyOnChange: false });
   }
   const focused = resolveTarget();
-  if (focused.cwd) syncTarget(focused, { force: true, notifyOnChange: false });
+  if (focused.cwd) syncTarget(focused, { force: false, notifyOnChange: false });
 }
